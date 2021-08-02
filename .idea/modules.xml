@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../SimpleDictionaryService/SimpleDictionaryService.iml" filepath="$PROJECT_DIR$/../SimpleDictionaryService/SimpleDictionaryService.iml" />
       <module fileurl="file://$PROJECT_DIR$/SimpleEncodings.iml" filepath="$PROJECT_DIR$/SimpleEncodings.iml" />
     </modules>
   </component>

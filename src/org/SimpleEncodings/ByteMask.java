@@ -7,11 +7,14 @@ public class ByteMask {
 
     private byte mask;
 
+    private int[][] valuePartsIntervals;
+
     public ByteMask(byte mask) {
         this.mask = mask;
     }
 
-    public ByteMask() {
+    public Byteask() {
+
     }
 
     public byte getMask() {
@@ -21,4 +24,12 @@ public class ByteMask {
     public void setMask(byte mask) {
         this.mask = mask;
     }
-}
+
+    public void setValuePartsIntervals(int[][] valuePartsIntervals){
+	    this.valuePartsIntervals = valuePartsIntervals;
+    }	 
+    
+    public int[][] getValuePartsIntervals(){
+        return this.valuePartsIntervals;
+    }
+} 

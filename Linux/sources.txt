@@ -1,0 +1,3 @@
+../src/org/SimpleEncodings/Encoding.java
+../src/org/SimpleEncodings/SymbolTemplate.java
+../src/org/SimpleEncodings/ByteMask.java
