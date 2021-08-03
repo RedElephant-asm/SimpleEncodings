@@ -1,0 +1,4 @@
+C:\Users\ksavchenko\Documents\Projects\Java\SimpleEncodings\src\org\SimpleEncodings\ByteTemplate.java
+C:\Users\ksavchenko\Documents\Projects\Java\SimpleEncodings\src\org\SimpleEncodings\Encoding.java
+C:\Users\ksavchenko\Documents\Projects\Java\SimpleEncodings\src\org\SimpleEncodings\Symbol.java
+C:\Users\ksavchenko\Documents\Projects\Java\SimpleEncodings\src\org\SimpleEncodings\SymbolTemplate.java

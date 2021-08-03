@@ -12,7 +12,7 @@ public class SymbolTemplate {
      * Стандартный шаблон для символов кодировки ASCII 128.
      */
     public static final SymbolTemplate ASCII128_DEFAULT_TEMPLATE = new SymbolTemplate(
-            new ByteTemplate((byte) 0b01111111, (byte) 0b10000000, (byte) 7, new byte[]{0, 6})
+            new ByteTemplate((byte) 0b01111111, (byte) 0b10000000, new byte[]{0, 6})
     );
 
     /**
@@ -31,6 +31,22 @@ public class SymbolTemplate {
 
     private SymbolTemplate() {
 
+    }
+
+    /**
+     * Назначением функции является получение численного эквивалента символа в данной кодировке.
+     * @return
+     * Численное значение декодированного символа.
+     */
+    public int getSymbolValuablePart(Symbol symbol){
+        ByteTemplate currentByteTemplate;
+        int valuablePart = 0, currentOffset = 0;
+        for (int byteCounter = 0; byteCounter < symbol.getBytes().length; byteCounter++){
+            currentByteTemplate = this.getByteTemplates()[byteCounter];
+            valuablePart |= (currentByteTemplate.getByteValuablePart(symbol.getBytes()[byteCounter]) << currentOffset);
+            currentOffset += currentByteTemplate.getValuablePartSize();
+        }
+        return valuablePart;
     }
 
     /**

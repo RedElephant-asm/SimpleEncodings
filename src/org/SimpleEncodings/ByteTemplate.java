@@ -28,10 +28,9 @@ public class ByteTemplate {
      */
     private byte[][] valuablePartIntervals;
 
-    public ByteTemplate(byte valuablePartsMask, byte identifyingPartsMask, byte valuablePartSize, byte[]... valuablePartIntervals) {
-        this.valuablePartMask = valuablePartsMask;
+    public ByteTemplate(byte valuablePartsMask, byte identifyingPartsMask, byte[]... valuablePartIntervals) {
+        setValuablePartMask(valuablePartsMask);
         this.identifyingPartMask = identifyingPartsMask;
-        this.valuablePartSize = valuablePartSize;
         this.valuablePartIntervals = valuablePartIntervals;
     }
 
@@ -71,8 +70,14 @@ public class ByteTemplate {
         return valuablePartMask;
     }
 
-    public void setValuePartMask(byte valuablePartMask) {
+    public void setValuablePartMask(byte valuablePartMask) {
         this.valuablePartMask = valuablePartMask;
+        this.valuablePartSize = 0;
+        for (byte bitCounter = 0; bitCounter < 8; bitCounter++){
+            if ( (valuablePartMask & (1 << bitCounter) ) != 0){
+                this.valuablePartSize++;
+            }
+        }
     }
 
     public void setValuePartIntervals(byte[][] valuablePartIntervals){
@@ -93,9 +98,5 @@ public class ByteTemplate {
 
     public byte getValuablePartSize() {
         return valuablePartSize;
-    }
-
-    public void setValuablePartSize(byte valuablePartSize) {
-        this.valuablePartSize = valuablePartSize;
     }
 }
