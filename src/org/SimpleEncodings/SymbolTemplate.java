@@ -41,10 +41,11 @@ public class SymbolTemplate {
     public int getSymbolValuablePart(Symbol symbol){
         ByteTemplate currentByteTemplate;
         int valuablePart = 0, currentOffset = 0;
-        for (int byteCounter = 0; byteCounter < symbol.getBytes().length; byteCounter++){
-            currentByteTemplate = this.getByteTemplates()[byteCounter];
+        for (int byteCounter = symbol.getBytes().length - 1; byteCounter >= 0 ; byteCounter--){
+            currentByteTemplate = byteTemplates[byteCounter];
             valuablePart |= (currentByteTemplate.getByteValuablePart(symbol.getBytes()[byteCounter]) << currentOffset);
             currentOffset += currentByteTemplate.getValuablePartSize();
+
         }
         return valuablePart;
     }

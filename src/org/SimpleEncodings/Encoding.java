@@ -10,6 +10,9 @@ import java.util.Arrays;
  */
 public class Encoding {
 
+    /**
+     * Пример модели кодировки UTF-8.
+     */
     public static final Encoding DEFAULT_UTF8 =
             new Encoding(
                     new SymbolTemplate(
@@ -27,10 +30,13 @@ public class Encoding {
                             new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5}),
                             new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5})));
 
+    /**
+     * Пример модели кодировки UTF-16 Little endian.
+     */
     public static final Encoding DEFAULT_UTF16LE =
             new Encoding(
                     new SymbolTemplate(
-                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 6}),
+                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7})),
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
@@ -38,6 +44,23 @@ public class Encoding {
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
                             new ByteTemplate((byte) 0b00000001, (byte) 0b11011000, new byte[]{0, 0})));
 
+    /**
+     * Пример модели кодировки UTF-16 Big endian.
+     */
+    public static final Encoding DEFAULT_UTF16BE =
+            new Encoding(
+                    new SymbolTemplate(
+                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
+                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7})),
+                    new SymbolTemplate(
+                            new ByteTemplate((byte) 0b00000001, (byte) 0b11011000, new byte[]{0, 0}),
+                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
+                            new ByteTemplate((byte) 0b00000001, (byte) 0b11011110, new byte[]{0, 0}),
+                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7})));
+
+    /**
+     * Пример модели кодировки ASCII.
+     */
     public static final Encoding DEFAULT_ASCII =
             new Encoding (
                     new SymbolTemplate(
