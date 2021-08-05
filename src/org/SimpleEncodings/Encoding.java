@@ -18,14 +18,14 @@ public class Encoding {
                     "UTF-8",
                     ByteSequenceType.BIG_ENDIAN,
                     new SymbolTemplate(
-                            new ByteTemplate((byte) 0b01111111, (byte) 0b00000000, new byte[]{0, 6})),
+                            new ByteTemplate((byte) 0b01111111, (byte) 0b00000000, new byte[]{0, 6}) ),
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b00011111, (byte) 0b11000000, new byte[]{0, 4}),
-                            new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5})),
+                            new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5}) ),
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b00001111, (byte) 0b11100000, new byte[]{0, 3}),
                             new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5}),
-                            new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5})),
+                            new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5}) ),
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b00000111, (byte) 0b11110000, new byte[]{0, 2}),
                             new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5}),
@@ -41,7 +41,7 @@ public class Encoding {
                     ByteSequenceType.LITTLE_ENDIAN,
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
-                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7})),
+                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}) ),
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
                             new ByteTemplate((byte) 0b00000001, (byte) 0b11011110, new byte[]{0, 0}),
@@ -57,7 +57,7 @@ public class Encoding {
                     ByteSequenceType.BIG_ENDIAN,
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
-                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7})),
+                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}) ),
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b00000001, (byte) 0b11011000, new byte[]{0, 0}),
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
