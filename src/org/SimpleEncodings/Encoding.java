@@ -15,6 +15,8 @@ public class Encoding {
      */
     public static final Encoding DEFAULT_UTF8 =
             new Encoding(
+                    "UTF-8",
+                    ByteSequenceType.BIG_ENDIAN,
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b01111111, (byte) 0b00000000, new byte[]{0, 6})),
                     new SymbolTemplate(
@@ -28,13 +30,15 @@ public class Encoding {
                             new ByteTemplate((byte) 0b00000111, (byte) 0b11110000, new byte[]{0, 2}),
                             new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5}),
                             new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5}),
-                            new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5})));
+                            new ByteTemplate((byte) 0b00111111, (byte) 0b10000000, new byte[]{0, 5}) ));
 
     /**
      * Пример модели кодировки UTF-16 Little endian.
      */
     public static final Encoding DEFAULT_UTF16LE =
             new Encoding(
+                    "UTF-16LE",
+                    ByteSequenceType.LITTLE_ENDIAN,
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7})),
@@ -42,13 +46,15 @@ public class Encoding {
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
                             new ByteTemplate((byte) 0b00000001, (byte) 0b11011110, new byte[]{0, 0}),
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
-                            new ByteTemplate((byte) 0b00000001, (byte) 0b11011000, new byte[]{0, 0})));
+                            new ByteTemplate((byte) 0b00000001, (byte) 0b11011000, new byte[]{0, 0}) ));
 
     /**
      * Пример модели кодировки UTF-16 Big endian.
      */
     public static final Encoding DEFAULT_UTF16BE =
             new Encoding(
+                    "UTF-16BE",
+                    ByteSequenceType.BIG_ENDIAN,
                     new SymbolTemplate(
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7})),
@@ -56,15 +62,17 @@ public class Encoding {
                             new ByteTemplate((byte) 0b00000001, (byte) 0b11011000, new byte[]{0, 0}),
                             new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}),
                             new ByteTemplate((byte) 0b00000001, (byte) 0b11011110, new byte[]{0, 0}),
-                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7})));
+                            new ByteTemplate((byte) 0b11111111, (byte) 0b00000000, new byte[]{0, 7}) ));
 
     /**
      * Пример модели кодировки ASCII.
      */
     public static final Encoding DEFAULT_ASCII =
             new Encoding (
+                    "ASCII",
+                    ByteSequenceType.LITTLE_ENDIAN,
                     new SymbolTemplate(
-                            new ByteTemplate((byte) 0b01111111, (byte) 0b10000000, new byte[]{0, 6})));
+                            new ByteTemplate((byte) 0b01111111, (byte) 0b10000000, new byte[]{0, 6}) ));
 
     public static final Encoding UNKNOWN_ENCODING = new Encoding();
 
@@ -72,16 +80,23 @@ public class Encoding {
     public static final double      MINIMAL_BYTE_GROUP_MATCH_RATIO =    0.8;
 
     /**
-     * Массив шаблонов, которые описывают формат символов в данной кодировке.
-     */
-    private SymbolTemplate[] templates;
-
-    /**
      * Название кодировки.
      */
     private String encodingName;
 
-    public Encoding(SymbolTemplate... templates) {
+    /**
+     * Тип последовательности, в которой хранятся байты символа данной кодировки.
+     */
+    private ByteSequenceType byteSequenceType;
+
+    /**
+     * Массив шаблонов, которые описывают формат символов в данной кодировке.
+     */
+    private SymbolTemplate[] templates;
+
+    public Encoding(String encodingName, ByteSequenceType byteSequenceType, SymbolTemplate... templates) {
+        this.encodingName = encodingName;
+        this.byteSequenceType = byteSequenceType;
         this.templates = templates;
     }
 
@@ -257,7 +272,7 @@ public class Encoding {
             return 0;
         }
         SymbolTemplate currentSymbolTemplate = findTemplateByByteCount(symbol.getBytes().length);
-        return currentSymbolTemplate.getSymbolValuablePart(symbol);
+        return currentSymbolTemplate.getSymbolValuablePart(symbol, this.byteSequenceType);
     }
 
     public SymbolTemplate[] getTemplates() {

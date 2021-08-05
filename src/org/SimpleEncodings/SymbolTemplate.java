@@ -38,14 +38,26 @@ public class SymbolTemplate {
      * @return
      * Численное значение декодированного символа.
      */
-    public int getSymbolValuablePart(Symbol symbol){
+    public int getSymbolValuablePart(Symbol symbol, ByteSequenceType byteSequenceType){
         ByteTemplate currentByteTemplate;
         int valuablePart = 0, currentOffset = 0;
-        for (int byteCounter = symbol.getBytes().length - 1; byteCounter >= 0 ; byteCounter--){
-            currentByteTemplate = byteTemplates[byteCounter];
-            valuablePart |= (currentByteTemplate.getByteValuablePart(symbol.getBytes()[byteCounter]) << currentOffset);
-            currentOffset += currentByteTemplate.getValuablePartSize();
+        switch (byteSequenceType){
+            case BIG_ENDIAN:
+                for (int byteCounter = symbol.getBytes().length - 1; byteCounter >= 0 ; byteCounter--){
+                    currentByteTemplate = byteTemplates[byteCounter];
+                    valuablePart |= (currentByteTemplate.getByteValuablePart(symbol.getBytes()[byteCounter]) << currentOffset);
+                    currentOffset += currentByteTemplate.getValuablePartSize();
 
+                }
+                break;
+
+            case LITTLE_ENDIAN:
+                for (int byteCounter = 0; byteCounter < symbol.getBytes().length ; byteCounter++){
+                    currentByteTemplate = byteTemplates[byteCounter];
+                    valuablePart |= (currentByteTemplate.getByteValuablePart(symbol.getBytes()[byteCounter]) << currentOffset);
+                    currentOffset += currentByteTemplate.getValuablePartSize();
+
+                }
         }
         return valuablePart;
     }
