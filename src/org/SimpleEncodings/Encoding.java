@@ -275,6 +275,19 @@ public class Encoding {
         return currentSymbolTemplate.getSymbolValuablePart(symbol, this.byteSequenceType);
     }
 
+    /**
+     * Назначением функции является определение, является ли символ, численное значение которого передан в качестве аргумента,
+     * служебным символом ASCII.
+     * @param symbolValuablePart
+     * Численное значение символа.
+     * @return
+     * true, если символ, численное значение которого передано в качестве аргумента, является служебным символом ASCII,
+     * в противном случае false.
+     */
+    public static boolean isASCIIServiceSymbolCode(int symbolValuablePart){
+        return symbolValuablePart >= 0 && symbolValuablePart < 65;
+    }
+
     public SymbolTemplate[] getTemplates() {
         return templates;
     }

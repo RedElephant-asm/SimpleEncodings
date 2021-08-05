@@ -3,3 +3,4 @@ C:\Users\ksavchenko\Documents\Projects\Java\SimpleEncodings\src\org\SimpleEncodi
 C:\Users\ksavchenko\Documents\Projects\Java\SimpleEncodings\src\org\SimpleEncodings\Encoding.java
 C:\Users\ksavchenko\Documents\Projects\Java\SimpleEncodings\src\org\SimpleEncodings\Symbol.java
 C:\Users\ksavchenko\Documents\Projects\Java\SimpleEncodings\src\org\SimpleEncodings\SymbolTemplate.java
+C:\Users\ksavchenko\Documents\Projects\Java\SimpleEncodings\src\org\SimpleEncodings\throwable\WrongEncodingException.java
