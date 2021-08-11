@@ -1,6 +1,7 @@
 package org.SimpleEncodings;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * @author Savchenko Kirill
@@ -93,6 +94,13 @@ public class Encoding {
      * Массив шаблонов, которые описывают формат символов в данной кодировке.
      */
     private SymbolTemplate[] templates;
+
+    private static HashMap<String, Encoding> stdEncodingsNames = new HashMap<String, Encoding>(){{
+        put("ascii", DEFAULT_ASCII);
+        put("utf8", DEFAULT_UTF8);
+        put("utf16le", DEFAULT_UTF16LE);
+        put("utf16be", DEFAULT_UTF16BE);
+    }};
 
     public Encoding(String encodingName, ByteSequenceType byteSequenceType, SymbolTemplate... templates) {
         this.encodingName = encodingName;
@@ -286,6 +294,13 @@ public class Encoding {
      */
     public static boolean isASCIIServiceSymbolCode(int symbolValuablePart){
         return symbolValuablePart >= 0 && symbolValuablePart < 65;
+    }
+
+    public static Encoding getEncodingByName(String encodingName){
+        if (! (stdEncodingsNames.get(encodingName) == null)){
+            return stdEncodingsNames.get(encodingName);
+        }
+        return UNKNOWN_ENCODING;
     }
 
     public SymbolTemplate[] getTemplates() {
